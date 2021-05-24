@@ -1,17 +1,9 @@
 import { Connection } from "../model/Connection"
+import { IConnectionsRepository, ICreateConnectionsDTO } from "./IConnectionsRepository";
 
-interface ICreateConnectionsDTO{
-    client: string;
-    connection_name: string;
-    address: string;
-    domain: string;
-    username: string;
-    password: string;
-    passworddb: string;
-    passwordapp: string;
-}
 
-class ConnectionsRepository{
+
+class ConnectionsRepository implements IConnectionsRepository{
 
     private connections: Connection[] = []
 

@@ -1,25 +1,18 @@
 import { Router } from "express";
 import { ConnectionsRepository } from "../repositories/ConnectionsRepository";
+import { CreateConnectionService } from "../services/CreateConnectionService";
 
 const connectionsRouter = Router();
 
 const connectionsRepository = new ConnectionsRepository()
 
-connectionsRouter.get("/connections", (request, response) => {
-    return response.status(200).json({ messagem: "hello World" })
-})
-
 connectionsRouter.post("/", (request, response) => {
 
     const { client, connection_name, address, domain, username, password, passworddb, passwordapp } = request.body
 
-    const connectionAlreadyExists = connectionsRepository.findByConnectionName(connection_name)
+    const createConnectionService =  new CreateConnectionService(connectionsRepository);
 
-    if(connectionAlreadyExists){
-        return response.status(400).json({error: "Connection Already Exists!"})
-    }
-
-    connectionsRepository.create({ client, connection_name, address, domain, username, password, passworddb, passwordapp } )
+    createConnectionService.execute({client, connection_name, address, domain, username, password, passworddb, passwordapp})
 
     return response.status(201).send()
 })
