@@ -1,4 +1,4 @@
-import { IConnectionsRepository } from "../repositories/IConnectionsRepository"
+import { IConnectionsRepository } from "../../repositories/IConnectionsRepository"
 
 interface IRequest{
     client: string;
@@ -12,7 +12,7 @@ interface IRequest{
 }
 
 
-class CreateConnectionService{
+class CreateConnectionUseCase{
     constructor(private connectionsRepository: IConnectionsRepository){
 
     }
@@ -28,4 +28,4 @@ class CreateConnectionService{
 }
 
 
-export {CreateConnectionService}
+export {CreateConnectionUseCase}
