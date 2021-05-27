@@ -1,5 +1,5 @@
-import { LogConnections } from "../model/LogConnections";
-import { ILogConnectionsRepository, ILogConnectionsDTO } from "./ILogConnectionsRepository";
+import { LogConnections } from "../../model/LogConnections";
+import { ILogConnectionsRepository, ILogConnectionsDTO } from "../ILogConnectionsRepository";
 
 
 class LogConnectionsRepository implements ILogConnectionsRepository{

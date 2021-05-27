@@ -1,4 +1,4 @@
-import { ILogConnectionsRepository } from "../repositories/ILogConnectionsRepository"
+import { ILogConnectionsRepository } from "../../repositories/ILogConnectionsRepository"
 
 interface IRequest{
     connection_name: string;
@@ -6,7 +6,7 @@ interface IRequest{
     
 }
 
-class CreateLogConnectionsService{
+class CreateLogConnectionsUseCase{
     constructor(private logConnectionsRepository: ILogConnectionsRepository){
 
     }
@@ -28,4 +28,4 @@ class CreateLogConnectionsService{
      }
 }
 
-export {CreateLogConnectionsService}
+export {CreateLogConnectionsUseCase}

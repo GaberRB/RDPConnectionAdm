@@ -1,27 +1,15 @@
 import {Router} from "express"
-import { LogConnectionsRepository } from "../modules/Connections/repositories/LogConnectionsRepository";
-import { CreateLogConnectionsService } from "../modules/Connections/services/CreateLogConnectionsService";
+import { createLogConnectionsController } from "../modules/Connections/useCases/createLogConnection";
 
 const logConnectionsRoutes = Router();
 
-const logConnectionsRepository = new LogConnectionsRepository();
 
 logConnectionsRoutes.post("/", (request, response)=>{
-    const {userconnect, connection_name} = request.body
-    const createLogConnectionsService = new CreateLogConnectionsService(logConnectionsRepository)
-
-    createLogConnectionsService.executeConnect({connection_name, userconnect})
-
-    return response.status(201).send()
+    return createLogConnectionsController.handle(request, response)
 })
 
 logConnectionsRoutes.put("/", (request, response)=>{
-    const {userconnect, connection_name} = request.body
-    const createLogConnectionsService = new CreateLogConnectionsService(logConnectionsRepository)
-
-    createLogConnectionsService.executeDesconnect({connection_name, userconnect})
-
-    return response.status(204).send()
+    return createLogConnectionsController.handlePut(request, response)
 })
 
 

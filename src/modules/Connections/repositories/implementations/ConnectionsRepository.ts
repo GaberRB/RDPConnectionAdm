@@ -1,5 +1,5 @@
-import { Connection } from "../model/Connection"
-import { IConnectionsRepository, ICreateConnectionsDTO } from "./IConnectionsRepository";
+import { Connection } from "../../model/Connection"
+import { IConnectionsRepository, ICreateConnectionsDTO } from "../IConnectionsRepository";
 
 
 
@@ -7,8 +7,17 @@ class ConnectionsRepository implements IConnectionsRepository{
 
     private connections: Connection[] = []
 
-    constructor(){
+    private static INSTANCE: ConnectionsRepository;
+
+    private constructor(){
         this.connections = []
+    }
+
+    public static getInstance(): ConnectionsRepository{
+        if(!ConnectionsRepository.INSTANCE){
+            ConnectionsRepository.INSTANCE = new ConnectionsRepository()
+        }
+        return ConnectionsRepository.INSTANCE
     }
 
     create({client, connection_name, address, domain, username, password, passworddb, passwordapp }: ICreateConnectionsDTO): void{
