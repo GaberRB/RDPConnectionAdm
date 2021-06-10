@@ -43,6 +43,7 @@ class ImportConnectionsUseCase{
                     passwordapp
                 })
             }).on("end", () =>{
+                fs.promises.unlink(file.path)
                 resolve(connections)
             }).on("error", (err)=> {
                 reject(err)
