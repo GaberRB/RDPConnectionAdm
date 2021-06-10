@@ -1,3 +1,4 @@
+import {Request, Response} from "express"
 import { ImportConnectionsUseCase } from "./ImportConnectionsUseCase"
 
 
