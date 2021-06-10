@@ -1,0 +1,131 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RDPConnectionADM Documentation",
+        "description": "Thos is an API for Connections RDP",
+        "version": "1.0.0",
+        "contact":{
+            "email": "gabrielriosbelmiro@gmail.com"
+        }
+    },
+    "paths": {
+        "/connections":{
+            "post":{
+                "tags":["Connections"],
+                "summary": "Create a Connection",
+                "description": "Create a new connection",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "client":{
+                                        "type": "string"
+                                    },
+                                    "connection_name":{
+                                        "type":"string"
+                                    },
+                                    "address":{
+                                        "type":"string"
+                                    },
+                                    "domain":{
+                                        "type":"string"
+                                    },
+                                    "username":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    },
+                                    "passworddb":{
+                                        "type":"string"
+                                    },
+                                    "passwordapp":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "client": "NameClient",
+                                    "connection_name": "Connection 1",
+                                    "address": "192.0.0.001:1000",
+                                    "domain":"",
+                                    "username": "adm",
+                                    "password": "adm",
+                                    "passworddb": "adm",
+                                    "passwordapp": "adm"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Create a new connection"
+                    },
+                    "500":{
+                        "description": "Connections already exists"
+                    }
+                }
+            },
+            "get":{
+                "tags":["Connections"],
+                "summary": "List all Connections",
+                "description": "List all Connections",
+                "responses":{
+                    "200": {
+                        "description": "Success",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "properties":{
+                                            "id":{
+                                                "type":"string"
+                                            },
+                                            "userconect":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string"
+                                            },
+                                            "status":{
+                                                "type": "string"
+                                            },
+                                            "client":{
+                                                "type": "string"
+                                            },
+                                            "connection_name":{
+                                                "type":"string"
+                                            },
+                                            "address":{
+                                                "type":"string"
+                                            },
+                                            "domain":{
+                                                "type":"string"
+                                            },
+                                            "username":{
+                                                "type":"string"
+                                            },
+                                            "password":{
+                                                "type":"string"
+                                            },
+                                            "passworddb":{
+                                                "type":"string"
+                                            },
+                                            "passwordapp":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
