@@ -1,10 +1,10 @@
 import { Router } from "express";
 import multer from "multer";
 
-
+import { CreateConnectionController } from "../modules/Connections/useCases/createConnection/CreateConnetionController";
 import { listConnectionsController } from "../modules/Connections/useCases/listConnections";
-import { createConnectionController } from "../modules/Connections/useCases/createConnection";
 import {importConnectionsController} from "../modules/Connections/useCases/importConnections";
+
 
 const connectionsRouter = Router();
 
@@ -12,10 +12,9 @@ const upload = multer({
     dest: "./tmp",
 })
 
+const createConnectionController = new CreateConnectionController()
 
-connectionsRouter.post("/", (request, response) => {
-    return createConnectionController.handle(request, response)
-})
+connectionsRouter.post("/", createConnectionController.handle)
 
 connectionsRouter.get("/", (request, response)=>{
     return listConnectionsController.handle(request, response)

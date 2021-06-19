@@ -1,4 +1,4 @@
-import { Connection } from "../../model/Connection";
+import { Connections } from "../../entities/Connections";
 import { IConnectionsRepository } from "../../repositories/IConnectionsRepository";
 
 
@@ -6,8 +6,8 @@ class ListConnectionsUseCase{
     constructor(private connectionsRepository: IConnectionsRepository){
 
     }
-    execute(): Connection[]{
-        const connections = this.connectionsRepository.list()
+    async execute(): Promise<Connections[]>{
+        const connections = await this.connectionsRepository.list()
 
         return connections
     }

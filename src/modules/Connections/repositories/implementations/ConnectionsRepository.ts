@@ -1,29 +1,21 @@
-import { Connection } from "../../model/Connection"
+import { getRepository, Repository } from "typeorm";
+import { Connections } from "../../entities/Connections"
 import { IConnectionsRepository, ICreateConnectionsDTO } from "../IConnectionsRepository";
-
 
 
 class ConnectionsRepository implements IConnectionsRepository{
 
-    private connections: Connection[] = []
+    private repository: Repository<Connections>
 
-    private static INSTANCE: ConnectionsRepository;
 
-    private constructor(){
-        this.connections = []
+    constructor(){
+        this.repository = getRepository(Connections)
+
     }
 
-    public static getInstance(): ConnectionsRepository{
-        if(!ConnectionsRepository.INSTANCE){
-            ConnectionsRepository.INSTANCE = new ConnectionsRepository()
-        }
-        return ConnectionsRepository.INSTANCE
-    }
 
-    create({client, connection_name, address, domain, username, password, passworddb, passwordapp }: ICreateConnectionsDTO): void{
-        const connection = new Connection() ;
-    
-        Object.assign(connection, {
+    async create({client, connection_name, address, domain, username, password, passworddb, passwordapp }: ICreateConnectionsDTO): Promise<void>{
+        const connection = this.repository.create({
             client,
             connection_name,
             address,
@@ -32,20 +24,20 @@ class ConnectionsRepository implements IConnectionsRepository{
             password,
             passworddb,
             passwordapp
-        })
-    
-        this.connections.push(connection)
+        })    
+        await this.repository.save(connection)
 
     }
 
-    list():Connection[]{
+    async list():Promise<Connections[]>{
 
-        return this.connections;
+        const connections = await this.repository.find()
+
+        return connections
     }
 
-    findByConnectionName(connection_name: string): Connection{
-        const connection = this.connections.find(connection => connection.connection_name === connection_name)
-
+    async findByConnectionName(connection_name: string): Promise<Connections>{
+        const connection = await this.repository.findOne({connection_name})
         return connection
     }
 }

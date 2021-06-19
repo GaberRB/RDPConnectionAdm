@@ -1,4 +1,4 @@
-import { Connection } from "../model/Connection";
+import { Connections } from "../entities/Connections";
 
 interface ICreateConnectionsDTO{
     client: string;
@@ -12,9 +12,9 @@ interface ICreateConnectionsDTO{
 }
 
 interface IConnectionsRepository{
-    findByConnectionName(connection_name: string): Connection;
-    list(): Connection[];
-    create({client, connection_name, address, domain, username, password, passworddb, passwordapp}: ICreateConnectionsDTO): void;
+    findByConnectionName(connection_name: string): Promise<Connections>;
+    list(): Promise<Connections[]>;
+    create({client, connection_name, address, domain, username, password, passworddb, passwordapp}: ICreateConnectionsDTO): Promise<void>;
 }
 
 export {IConnectionsRepository, ICreateConnectionsDTO}

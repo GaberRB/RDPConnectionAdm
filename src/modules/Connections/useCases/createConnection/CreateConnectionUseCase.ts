@@ -1,3 +1,5 @@
+import {inject, injectable} from "tsyringe"
+
 import { IConnectionsRepository } from "../../repositories/IConnectionsRepository"
 
 interface IRequest{
@@ -11,13 +13,15 @@ interface IRequest{
     passwordapp: string;
 }
 
-
+@injectable()
 class CreateConnectionUseCase{
-    constructor(private connectionsRepository: IConnectionsRepository){
+    constructor(
+        @inject("ConnectionsRepository")
+        private connectionsRepository: IConnectionsRepository){
 
     }
-    execute({client, connection_name, address, domain, username, password, passworddb, passwordapp}: IRequest): void{
-        const connectionAlreadyExists = this.connectionsRepository.findByConnectionName(connection_name)
+    async execute({client, connection_name, address, domain, username, password, passworddb, passwordapp}: IRequest): Promise<void>{
+        const connectionAlreadyExists = await this.connectionsRepository.findByConnectionName(connection_name)
 
         if(connectionAlreadyExists){
             throw new Error("Connection Already Exists")

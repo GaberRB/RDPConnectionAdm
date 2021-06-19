@@ -28,27 +28,33 @@ export class CreateConnections1623548371490 implements MigrationInterface {
                         },
                         {
                             name: "domain",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "username",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "password",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "passworddb",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "passwordapp",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "userconect",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                         {
                             name: "date",
@@ -57,7 +63,8 @@ export class CreateConnections1623548371490 implements MigrationInterface {
                         },
                         {
                             name: "status",
-                            type: "varchar"
+                            type: "varchar",
+                            default: "null"
                         },
                     ]
                 }

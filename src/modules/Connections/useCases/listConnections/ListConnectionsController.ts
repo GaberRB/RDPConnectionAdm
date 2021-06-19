@@ -3,9 +3,9 @@ import { ListConnectionsUseCase } from "./ListConnectionsUseCase"
 
 class ListConnectionsController {
     constructor(private listConnectionsUseCase: ListConnectionsUseCase){}
-    handle(request: Request, response: Response): Response {
+    async handle(request: Request, response: Response): Promise<Response> {
 
-        const all = this.listConnectionsUseCase.execute()
+        const all = await this.listConnectionsUseCase.execute()
 
         return response.json(all)
     }

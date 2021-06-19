@@ -9,12 +9,12 @@ let db = new sqlite3.Database('rpdConnections.db', (err) => {
     console.log('Connected to the in-memory SQlite database.');
   });
   
-  // close the database connection
-  db.close((err) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    console.log('Close the database connection.');
-  });
+  // // close the database connection
+  // db.close((err) => {
+  //   if (err) {
+  //     return console.error(err.message);
+  //   }
+  //   console.log('Close the database connection.');
+  // });
 
 createConnection()
