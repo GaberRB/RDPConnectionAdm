@@ -1,4 +1,4 @@
-import { LogConnections } from "../../model/LogConnections";
+import { LogConnections } from "../../entities/LogConnections";
 import { ILogConnectionsRepository, ILogConnectionsDTO } from "../ILogConnectionsRepository";
 
 

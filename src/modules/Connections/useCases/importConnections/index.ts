@@ -2,7 +2,7 @@ import { ConnectionsRepository } from "../../repositories/implementations/Connec
 import { ImportConnectionsController } from "./ImportConnectionsController";
 import { ImportConnectionsUseCase } from "./ImportConnectionsUseCase";
 
-const connectionsRepository = ConnectionsRepository.getInstance();
+const connectionsRepository = null
 const importConnectionsUseCase = new ImportConnectionsUseCase(connectionsRepository);
 const importConnectionsController = new ImportConnectionsController(importConnectionsUseCase);
 

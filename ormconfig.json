@@ -1,0 +1,13 @@
+{
+    "host": "localhost",
+    "type": "sqlite",
+    "database": "rpdConnections.db",
+    "migrations": ["./src/database/migrations/*.ts"],
+    "cli":{
+        "migrationsDir": "./src/database/migrations"
+    },
+    "entities": ["./src/modules/Connections/entities/*.ts"],
+    "logging": false,
+    "synchronize": true
+
+}
